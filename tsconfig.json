@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types", "./types"], // Include the custom types folder
+  },
+  "include": ["src/**/*.ts", "types/**/*.d.ts"], // Ensure the custom types are included
+  "exclude": ["node_modules"]
+}
