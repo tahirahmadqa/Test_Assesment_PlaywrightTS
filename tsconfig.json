@@ -8,7 +8,8 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types", "./types"], // Include the custom types folder
+    "outDir": "./dist" // Optional: Specify the output directory for compiled files
   },
-  "include": ["src/**/*.ts", "types/**/*.d.ts"], // Ensure the custom types are included
+  "include": ["src/**/*.ts", "types/**/*.d.ts", "reports/**/*.ts"], // Ensure the custom types and reports are included
   "exclude": ["node_modules"]
 }
