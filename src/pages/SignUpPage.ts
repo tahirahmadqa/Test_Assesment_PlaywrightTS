@@ -4,7 +4,7 @@ export class SignUpPage extends BasePage {
   
   // Other signup methods as before...
   private acceptCookiesButton = "(//button[normalize-space()='Accept All Cookies'])[1]";
-  private profileIconButton = "(//button[@type='button'])[63]";
+  private profileIconButton = "[data-testid='signin-test']";
   private newCustomerOption = '(//a[normalize-space()="I\'m a new customer"])[1]';
   private selectTitle = "(//select[@id='salutation'])[1]";
   private firstName = "(//input[@id='firstName'])[1]";
@@ -25,7 +25,7 @@ export class SignUpPage extends BasePage {
 
   async navigateToSignUpPage(): Promise<void> {
     await this.click(this.acceptCookiesButton);
-    await this.click(this.profileIconButton);
+    await this.page.locator(this.profileIconButton).nth(1).click();
     await this.click(this.newCustomerOption);
     await this.page.waitForTimeout(3000);
   }
