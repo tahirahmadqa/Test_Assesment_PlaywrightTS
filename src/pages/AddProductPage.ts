@@ -1,27 +1,33 @@
+import { expect } from 'playwright/test';
 import { LogInPage } from './LoginPage';
 
 export class AddProductPage extends LogInPage{
     
-    private dressesTab = '(//span[text()="Dresses"])[2]';
-    private selectDress = ".ProductCard_title__nIU_H";
-    private addToBag = "(//button[@aria-label='add to bag'])[1]";
-    private selectSize = "(//button[@aria-label='20'])[1]";
-    private goToBag = "(//a[@id='GoToBagPDP'])[1]";
-    private goToCheckout = "(//button[@class='Button Button_success Button_fullWidth'])[1]";
-    private continueToPayment = "(//button[@id='paymentButton'])[1]";
-    private clickApplyNow = "(//a[@id='startcreditapplication'])[1]";
-    private clickApply = "(//button[@id='creditapplicationapply'])[1]";
+    private dressesTab = '//li/a/span[text()="Dresses"]';
+    private selectDress = "[data-product-number='1']";
+    private addToBag = "[aria-label='add to bag']";
+    private selectSize = "[aria-label='20']";
+    private goToBag = "a#GoToBagPDP";
+    private addedToBag = "//h3[text()='Added to bag!']"
+    private goToCheckout = "[aria-label='Go to checkout']";
+    private continueToPayment = "#paymentButton";
+    private clickApplyNow = "[aria-label='Place order']";
+    private bagItem = '[data-cy="bag-item"]'
+    private errorNotification = '[data-testid="notification-content"]'
+
+    
 
     async addItems(): Promise<void>{
+        await expect(this.page.locator(this.dressesTab)).toBeVisible()
         await this.click(this.dressesTab);
-        await this.page.locator(this.selectDress).nth(0).click();
+        await this.click(this.selectDress);
         await this.click(this.addToBag);
         await this.click(this.selectSize);
+        await expect(this.page.locator(this.addedToBag)).toBeVisible()
         await this.click(this.goToBag);
         await this.click(this.goToCheckout);
         await this.click(this.continueToPayment);
         await this.click(this.clickApplyNow);
-        await this.click(this.clickApply);
     }
 
 }

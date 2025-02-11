@@ -25,12 +25,12 @@ export class LogInPage extends BasePage {
         await this.type(this.emailField, username);
         await this.type(this.passwordField, password);
         await this.click(this.signInButton);
-        await this.page.waitForTimeout(3000)
     }
 
     async sendCodeAndVerify(): Promise<void> {
         const loginData = LogInCreds.logInData();
         const sendCodeButtonLocator = this.page.locator(this.sendCodeButton);
+        await sendCodeButtonLocator.waitFor({ state: 'visible', timeout: 5000 });
         if (await sendCodeButtonLocator.isVisible()) {
             await sendCodeButtonLocator.click();
             await this.page.waitForTimeout(10000);
@@ -53,7 +53,6 @@ export class LogInPage extends BasePage {
                 await this.page.locator(this.otpCodeInput).fill(otpCode);
                 console.log(`OTP Code: ${otpCode} successfully filled.`);
                 await this.page.locator(this.otpSubmitButton).click();
-                await this.page.waitForTimeout(15000);
             } else {
                 console.error('Failed to retrieve OTP code. The text content is null.');
             }
@@ -66,6 +65,7 @@ export class LogInPage extends BasePage {
 
     async myAccountToBeVisible(): Promise<void>{
         await this.page.locator(this.myAccountLink).nth(0).waitFor({ state: 'attached', timeout: 20000 });
+        await expect(this.page.locator(this.myAccountLink).nth(0)).toBeTruthy;
         console.log('myAccountLink is available in the DOM.');
     }
 

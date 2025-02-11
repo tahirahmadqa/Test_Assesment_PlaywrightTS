@@ -42,7 +42,7 @@ Test data for the automation was dynamically generated using the **Faker** libra
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/tahirahmadqa/Test_Assesment_PlaywrightTS.git
    ```
 
 2. Install dependencies:
@@ -54,6 +54,20 @@ Test data for the automation was dynamically generated using the **Faker** libra
    ```bash
    npm run test:headed 
    ```
+
+
+## Documentation related to the feedback
+1. A Base Page acts as a parent class where all common actions (e.g., clicking, typing, waiting for elements) are defined.
+Instead of repeating these actions across different test files, child page classes can inherit them, making the test framework cleaner and more maintainable.
+
+2. A Base URL allows you to define the application's root URL in one place (e.g., Playwright's playwright.config.ts).
+This eliminates the need to hardcode URLs across multiple test files, making it easier to update when environments change (e.g., dev, staging, prod).
+
+3. The reason why nth(0) locators were used is becasue there were some areas where no unique elements were present, so indexing was the only way to approach this situation.
+
+4. The reason why gogole API waa not used to handle captcha is because, the google API is used by dev's via API key provided by google directly. We as QA dont usually have access to these keys and this test project is directly written using a PROD environment.
+
+
 
 ## Conclusion
 

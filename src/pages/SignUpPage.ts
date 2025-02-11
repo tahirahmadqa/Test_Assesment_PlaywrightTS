@@ -1,26 +1,29 @@
+import { expect } from 'playwright/test';
 import { BasePage } from './BasePage';
 
 export class SignUpPage extends BasePage {
   
   // Other signup methods as before...
-  private acceptCookiesButton = "(//button[normalize-space()='Accept All Cookies'])[1]";
+  private acceptCookiesButton = "#onetrust-accept-btn-handler";
   private profileIconButton = "[data-testid='signin-test']";
-  private newCustomerOption = '(//a[normalize-space()="I\'m a new customer"])[1]';
-  private selectTitle = "(//select[@id='salutation'])[1]";
-  private firstName = "(//input[@id='firstName'])[1]";
-  private lastName = "(//input[@id='lastName'])[1]";
-  private selectDay = "(//input[@id='day'])[1]";
-  private selectMonth = "(//input[@id='month'])[1]";
-  private selectYear = "(//input[@id='year'])[1]";
-  private phoneNumber = "(//input[@id='phoneNumber'])[1]";
-  private homeAddress = "(//input[@id='address'])[1]";
-  private selectFirstAddress = "(//div[@id='GB|RM|A|15548301|A2|ENG'])[1]";
-  private emailAddress = "(//input[@id='email'])[1]";
-  private password = "(//input[@id='password'])[1]";
-  private emailOption = "(//input[@id='emailOptIn'])[1]";
-  private postOption = "(//input[@id='postOptIn'])[1]";
-  private phoneOption = "(//input[@id='phoneOptIn'])[1]";
-  private continueButton = "(//button[normalize-space()='Continue'])[1]";
+  private newCustomerOption = '#newCustomerButton';
+  private selectTitle = "#salutation";
+  private firstName = "#firstName";
+  private lastName = "#lastName";
+  private selectDay = "input#day";
+  private selectMonth = "input#month";
+  private selectYear = "input#year";
+  private phoneNumber = "#phoneNumber";
+  private homeAddress = "#address";
+  private selectFirstAddress = "div.addressFinder__result";
+  private emailAddress = "#email";
+  private password = "#password";
+  private emailOption = "#emailOptIn";
+  private postOption = "#postOptIn";
+  private phoneOption = "#phoneOptIn";
+  private continueButton = "[name='continue']";
+  private accountCreated = '//p[text()="Account created !"]'
+
 
 
   async navigateToSignUpPage(): Promise<void> {
@@ -95,6 +98,10 @@ export class SignUpPage extends BasePage {
 
   async fillPassword(password: string): Promise<void> {
     await this.type(this.password, password);
+  }
+
+  async verifyAccountCreated(){
+    await expect(this.page.locator(this.accountCreated)).toBeVisible();
   }
 
 }

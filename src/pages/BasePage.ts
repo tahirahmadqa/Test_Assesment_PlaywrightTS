@@ -31,7 +31,7 @@ export class BasePage {
   }
 
   async click(selector: string): Promise<void> {
-    await this.page.click(selector);
+    await this.page.locator(selector).nth(0).click();
   }
 
   async type(selector: string, text: string): Promise<void> {

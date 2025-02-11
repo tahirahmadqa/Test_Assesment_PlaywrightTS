@@ -5,7 +5,6 @@ import { LogInCreds} from '../utils/TestDataGenerator';
 
 test.describe('Existing uer can login successfully', () => {
     test('Should navigate to login page and verify user can log In', async ({ page }) => {
-      test.setTimeout(200000);
       const logInPage = new LogInPage(page);
       const loginData = LogInCreds.logInData();
       // Navigate to the main page (base URL)

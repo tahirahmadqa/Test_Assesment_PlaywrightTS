@@ -5,7 +5,6 @@ import { LogInPage } from '../pages/LoginPage';
 
 test.describe('User logs in and adds product to cart', () => {
     test('Should be able to add product to cart', async ({ page }) => {
-      test.setTimeout(200000);
       const logInPage = new LogInPage(page);
       const loginData = LogInCreds.logInData();
       const addProduct = new AddProductPage(page);
